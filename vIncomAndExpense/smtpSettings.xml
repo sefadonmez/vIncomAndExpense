@@ -1,0 +1,9 @@
+﻿<SmtpSettings>
+  <Host>smtp.example.com</Host>
+  <Port>587</Port>
+  <Username>your-email@example.com</Username>
+  <Password>your-password</Password>
+  <FromAddress>your-email@example.com</FromAddress>
+  <ToAddress>recipient@example.com</ToAddress>
+  <Subject>Gelir ve Gider Raporu</Subject>
+</SmtpSettings>
