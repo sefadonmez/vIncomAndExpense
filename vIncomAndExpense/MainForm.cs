@@ -15,6 +15,7 @@ using iTextSharp.text.pdf;
 using System.Net.Mail;
 using System.Net;
 using System.Xml;
+using System.Diagnostics;
 namespace vIncomAndExpense
 {
     public partial class MainForm : Form
@@ -345,6 +346,50 @@ namespace vIncomAndExpense
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"); // Güncel tarih ve saat bilgisini toolStripStatusLabel1 içine yazdır
 
+        }
+
+        private void editToolStripMenuItemEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string xmlFilePath = "smtpSettings.xml"; // XML dosyasının yolu
+                Process.Start("notepad.exe", xmlFilePath); // Notepad ile dosyayı aç
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Dosya açılırken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void testToolStripMenuItemTESTConnect_Click(object sender, EventArgs e)
+        {
+            SmtpSettings smtpSettings = LoadSmtpSettings("smtpSettings.xml");
+
+            if (smtpSettings == null)
+            {
+                MessageBox.Show("SMTP ayarları yüklenemedi.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                MailMessage mail = new MailMessage(smtpSettings.FromAddress, smtpSettings.ToAddress);
+                mail.Subject = "SMTP Test";
+                mail.Body = "Bu bir test e-postasıdır.";
+
+                SmtpClient smtpClient = new SmtpClient(smtpSettings.Host, smtpSettings.Port);
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential(smtpSettings.Username, smtpSettings.Password);
+                smtpClient.EnableSsl = true; // SSL/TLS şifreleme kullanılacaksa true olarak ayarlanmalı
+
+                smtpClient.Send(mail);
+
+                MessageBox.Show("Test mail başarıyla gönderildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Test mail gönderilirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

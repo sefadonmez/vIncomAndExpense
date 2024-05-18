@@ -34,7 +34,8 @@ namespace vIncomAndExpense
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItemTESTConnect = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -159,6 +160,7 @@ namespace vIncomAndExpense
             // 
             // btnSendEmail
             // 
+            this.btnSendEmail.ContextMenuStrip = this.contextMenuStrip1;
             this.btnSendEmail.Location = new System.Drawing.Point(471, 47);
             this.btnSendEmail.Name = "btnSendEmail";
             this.btnSendEmail.Size = new System.Drawing.Size(88, 34);
@@ -189,15 +191,24 @@ namespace vIncomAndExpense
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem});
+            this.testToolStripMenuItemTESTConnect,
+            this.editToolStripMenuItemEdit});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
-            // editToolStripMenuItem
+            // editToolStripMenuItemEdit
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItemEdit.Name = "editToolStripMenuItemEdit";
+            this.editToolStripMenuItemEdit.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItemEdit.Text = "Edit";
+            this.editToolStripMenuItemEdit.Click += new System.EventHandler(this.editToolStripMenuItemEdit_Click);
+            // 
+            // testToolStripMenuItemTESTConnect
+            // 
+            this.testToolStripMenuItemTESTConnect.Name = "testToolStripMenuItemTESTConnect";
+            this.testToolStripMenuItemTESTConnect.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItemTESTConnect.Text = "Test Connection";
+            this.testToolStripMenuItemTESTConnect.Click += new System.EventHandler(this.testToolStripMenuItemTESTConnect_Click);
             // 
             // MainForm
             // 
@@ -241,7 +252,8 @@ namespace vIncomAndExpense
         private ToolStripStatusLabel toolStripStatusLabel1;
         private Timer timer1;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItemEdit;
+        private ToolStripMenuItem testToolStripMenuItemTESTConnect;
     }
 
 }
